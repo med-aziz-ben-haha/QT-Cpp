@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>img/1200px-La_Poste_tunisienne_2011.svg.png</file>
+        <file>img/bg.png</file>
+        <file>img/Add-icon.png</file>
+        <file>img/delete-icon.png</file>
+        <file>img/Windows-Log-Off-icon.png</file>
+        <file>img/user-add-icon---shine-set-add-new-user-add-user-30.png</file>
+        <file>img/unnamed.png</file>
+        <file>img/download.png</file>
+        <file>img/images.png</file>
+        <file>img/unnamed (1).png</file>
+    </qresource>
+</RCC>
