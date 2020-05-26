@@ -20,24 +20,21 @@ public:
     ~Gestion_Coli_Courrier();
 private slots:
 
+    void refresh();
+
     void on_ajoutercoli_clicked();
     void on_suppcoli_clicked();
-    void on_Load_1_clicked();
     void on_tri_coli_clicked();
 
     void on_ajoutercourrier_clicked();
     void on_suppcourrier_clicked();
-    void on_Load_2_clicked();
     void on_tri_coli_2_clicked();
 
     void on_ajouterequip_clicked();
     void on_supp_equip_clicked();
-    void on_Load_3_clicked();
 
     void on_ajouterliv_clicked();
     void on_supp_liv_clicked();
-    void on_Load_4_clicked();
-    void on_refresh_clicked();
 
 
     void on_recherche_3_textChanged(const QString &arg1);
@@ -48,9 +45,9 @@ private slots:
 
     void on_recherche_4_textChanged(const QString &arg1);
 
-    void on_PDF_2_clicked();
+//    void on_PDF_2_clicked();
 
-    void on_PDF_clicked();
+  //  void on_PDF_clicked();
 
     void on_Modifiercoli_clicked();
 

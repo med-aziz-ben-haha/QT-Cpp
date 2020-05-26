@@ -1,4 +1,4 @@
-QT       += core gui sql charts network texttospeech
+QT       += core gui sql charts network texttospeech printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 
@@ -19,12 +19,17 @@ SOURCES += \
     addconge.cpp \
     addemp.cpp \
     client.cpp \
+    coli.cpp \
     conge.cpp \
     connection.cpp \
     connexion.cpp \
+    courrier.cpp \
     deleteemp.cpp \
+    equipement.cpp \
     exportexcelobject.cpp \
+    gestion_coli_courrier.cpp \
     global.cpp \
+    livraison.cpp \
     main.cpp \
     mainwindow.cpp \
     mytestmodel.cpp \
@@ -33,18 +38,24 @@ SOURCES += \
     smtp.cpp \
     stat_cong.cpp \
     stat_emp.cpp \
+    stat_etat.cpp \
     work_space.cpp
 
 HEADERS += \
     addconge.h \
     addemp.h \
     client.h \
+    coli.h \
     conge.h \
     connection.h \
     connexion.h \
+    courrier.h \
     deleteemp.h \
+    equipement.h \
     exportexcelobject.h \
+    gestion_coli_courrier.h \
     global.h \
+    livraison.h \
     mainwindow.h \
     mytestmodel.h \
     peermanager.h \
@@ -52,15 +63,18 @@ HEADERS += \
     smtp.h \
     stat_cong.h \
     stat_emp.h \
+    stat_etat.h \
     work_space.h
 
 FORMS += \
     addconge.ui \
     addemp.ui \
     deleteemp.ui \
+    gestion_coli_courrier.ui \
     mainwindow.ui \
     stat_cong.ui \
     stat_emp.ui \
+    stat_etat.ui \
     work_space.ui
 
 requires(qtConfig(udpsocket))
@@ -74,10 +88,7 @@ INSTALLS += target
 target.path = $$[QT_INSTALL_EXAMPLES]/network/network-chat
 INSTALLS += target
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+
 
 RESOURCES += \
     resources.qrc

@@ -9,6 +9,7 @@
 #ifndef UI_ADDCONGE_H
 #define UI_ADDCONGE_H
 
+#include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
@@ -53,6 +54,8 @@ public:
         datedebut = new QDateEdit(addconge);
         datedebut->setObjectName(QString::fromUtf8("datedebut"));
         datedebut->setGeometry(QRect(100, 120, 151, 22));
+        datedebut->setCalendarPopup(true);
+        datedebut->setDate(QDate(2020, 1, 1));
         label_3 = new QLabel(addconge);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(20, 190, 71, 16));
@@ -67,6 +70,8 @@ public:
         datefin = new QDateEdit(addconge);
         datefin->setObjectName(QString::fromUtf8("datefin"));
         datefin->setGeometry(QRect(100, 150, 151, 22));
+        datefin->setCalendarPopup(true);
+        datefin->setDate(QDate(2020, 1, 1));
         label_5 = new QLabel(addconge);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(20, 97, 47, 13));

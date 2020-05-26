@@ -35,7 +35,7 @@
      <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -652,7 +652,7 @@ color: rgb(0, 170, 0);</string>
   </widget>
   <action name="actionajouter">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/img/user-add-icon---shine-set-add-new-user-add-user-30.png</normaloff>:/res/img/user-add-icon---shine-set-add-new-user-add-user-30.png</iconset>
    </property>
    <property name="text">
@@ -664,7 +664,7 @@ color: rgb(0, 170, 0);</string>
   </action>
   <action name="actionsupprimer">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/img/images.png</normaloff>:/res/img/images.png</iconset>
    </property>
    <property name="text">
@@ -676,7 +676,7 @@ color: rgb(0, 170, 0);</string>
   </action>
   <action name="actiondeconnecter">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/img/Windows-Log-Off-icon.png</normaloff>:/res/img/Windows-Log-Off-icon.png</iconset>
    </property>
    <property name="text">
@@ -691,7 +691,7 @@ color: rgb(0, 170, 0);</string>
   </action>
   <action name="actionAccepter_cong">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/img/Add-icon.png</normaloff>:/res/img/Add-icon.png</iconset>
    </property>
    <property name="text">
@@ -706,7 +706,7 @@ color: rgb(0, 170, 0);</string>
   </action>
   <action name="actionsupprimer_cong">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/img/delete-icon.png</normaloff>:/res/img/delete-icon.png</iconset>
    </property>
    <property name="text">
@@ -721,7 +721,7 @@ color: rgb(0, 170, 0);</string>
   </action>
   <action name="actionopen_music">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/res/img/unnamed (1).png</normaloff>:/res/img/unnamed (1).png</iconset>
    </property>
    <property name="text">
@@ -738,8 +738,6 @@ color: rgb(0, 170, 0);</string>
    </property>
   </action>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

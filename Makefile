@@ -250,6 +250,7 @@ Makefile: project.pro C:/Qt/Qt5.13.1/5.13.1/mingw73_32/mkspecs/win32-g++/qmake.c
 		C:/Qt/Qt5.13.1/5.13.1/mingw73_32/mkspecs/features/lex.prf \
 		project.pro \
 		C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5Charts.prl \
+		C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5PrintSupport.prl \
 		C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5Widgets.prl \
 		C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5Gui.prl \
 		C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5Sql.prl \
@@ -445,6 +446,7 @@ C:/Qt/Qt5.13.1/5.13.1/mingw73_32/mkspecs/features/yacc.prf:
 C:/Qt/Qt5.13.1/5.13.1/mingw73_32/mkspecs/features/lex.prf:
 project.pro:
 C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5Charts.prl:
+C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5PrintSupport.prl:
 C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5Widgets.prl:
 C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5Gui.prl:
 C:/Qt/Qt5.13.1/5.13.1/mingw73_32/lib/Qt5Sql.prl:

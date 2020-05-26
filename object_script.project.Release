@@ -1,12 +1,17 @@
 release/addconge.o
 release/addemp.o
 release/client.o
+release/coli.o
 release/conge.o
 release/connection.o
 release/connexion.o
+release/courrier.o
 release/deleteemp.o
+release/equipement.o
 release/exportexcelobject.o
+release/gestion_coli_courrier.o
 release/global.o
+release/livraison.o
 release/main.o
 release/mainwindow.o
 release/mytestmodel.o
@@ -15,6 +20,7 @@ release/server.o
 release/smtp.o
 release/stat_cong.o
 release/stat_emp.o
+release/stat_etat.o
 release/work_space.o
 release/qrc_resources.o
 release/moc_addconge.o
@@ -23,6 +29,7 @@ release/moc_client.o
 release/moc_connection.o
 release/moc_deleteemp.o
 release/moc_exportexcelobject.o
+release/moc_gestion_coli_courrier.o
 release/moc_mainwindow.o
 release/moc_mytestmodel.o
 release/moc_peermanager.o
@@ -30,4 +37,5 @@ release/moc_server.o
 release/moc_smtp.o
 release/moc_stat_cong.o
 release/moc_stat_emp.o
+release/moc_stat_etat.o
 release/moc_work_space.o

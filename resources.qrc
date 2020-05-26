@@ -11,4 +11,19 @@
         <file>img/images.png</file>
         <file>img/unnamed (1).png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>Images/add.png</file>
+        <file>Images/avatar.png</file>
+        <file>Images/delete.png</file>
+        <file>Images/excel.png</file>
+        <file>Images/load.webp</file>
+        <file>Images/load2.png</file>
+        <file>Images/modify.png</file>
+        <file>Images/modify.webp</file>
+        <file>Images/PDF.png</file>
+        <file>Images/PDF2.png</file>
+        <file>Images/search.png</file>
+        <file>Images/stat.png</file>
+        <file>Images/tri.png</file>
+    </qresource>
 </RCC>

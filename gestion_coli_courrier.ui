@@ -27,7 +27,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -92,22 +92,6 @@
         </property>
         <property name="styleSheet">
          <string notr="true">border-image: url(:/Images/modify.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="Load_1">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>360</y>
-          <width>41</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/Images/load2.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -242,22 +226,6 @@
           <string>AVECLIV</string>
          </property>
         </item>
-       </widget>
-       <widget class="QPushButton" name="PDF">
-        <property name="geometry">
-         <rect>
-          <x>410</x>
-          <y>360</y>
-          <width>51</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/Images/PDF2.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
        </widget>
        <widget class="QPushButton" name="EXCEL1">
         <property name="geometry">
@@ -594,7 +562,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
@@ -637,22 +605,6 @@
         </property>
         <property name="styleSheet">
          <string notr="true">border-image: url(:/Images/delete.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="Load_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>360</y>
-          <width>41</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/Images/load2.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -776,22 +728,6 @@
           <string>ETAT</string>
          </property>
         </item>
-       </widget>
-       <widget class="QPushButton" name="PDF_2">
-        <property name="geometry">
-         <rect>
-          <x>410</x>
-          <y>360</y>
-          <width>51</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/Images/PDF2.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
        </widget>
        <widget class="QPushButton" name="EXCEL_2">
         <property name="geometry">
@@ -1108,7 +1044,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_8">
        <attribute name="title">
@@ -1151,22 +1087,6 @@
         </property>
         <property name="styleSheet">
          <string notr="true">border-image: url(:/Images/delete.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="Load_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>360</y>
-          <width>41</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/Images/load2.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -1398,7 +1318,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_11">
        <attribute name="title">
@@ -1444,22 +1364,6 @@
           <width>761</width>
           <height>281</height>
          </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="Load_4">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>360</y>
-          <width>41</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/Images/load2.png);</string>
-        </property>
-        <property name="text">
-         <string/>
         </property>
        </widget>
        <widget class="QLineEdit" name="recherche_4">
@@ -1661,22 +1565,6 @@
            <width>231</width>
            <height>22</height>
           </rect>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="refresh">
-         <property name="geometry">
-          <rect>
-           <x>410</x>
-           <y>70</y>
-           <width>31</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-image: url(:/Images/load.webp);</string>
-         </property>
-         <property name="text">
-          <string/>
          </property>
         </widget>
        </widget>

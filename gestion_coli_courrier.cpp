@@ -20,7 +20,7 @@
 #include <QtPrintSupport/QPrinter>
 #include <QTextDocument>
 #include <QPrintDialog>
-#include "export_excel.h"
+#include "exportexcelobject.h"
 #include <QFileDialog>
 
 Gestion_Coli_Courrier::Gestion_Coli_Courrier(QWidget *parent)
@@ -58,12 +58,28 @@ Gestion_Coli_Courrier::Gestion_Coli_Courrier(QWidget *parent)
     ui->Poids->setMaxLength(8);
     ui->prix_2->setValidator( new QIntValidator(0, 99999999, this) );
     ui->prix_2->setMaxLength(8);
+
+    refresh();
 }
 
 Gestion_Coli_Courrier::~Gestion_Coli_Courrier()
 {
     delete ui;
 }
+
+
+//***************************************************
+void Gestion_Coli_Courrier::refresh(){
+
+    ui->tableColi->setModel(tmpcoli.afficherColi());
+     ui->tableView_2->setModel(tmpcourrier.afficherCourrier());
+     ui->tableView_3->setModel(tmpequip.afficherEquip());
+     ui->comboBox->setModel(tmpcoli.afficheridcoli());
+     ui->comboBox_2->setModel(tmpequip.afficheridequip());
+     ui->tableView_4->setModel(tmpliv.afficherLiv());
+
+}
+
 
 //***********************************CRUD Coli***********************************
 void Gestion_Coli_Courrier::on_ajoutercoli_clicked()
@@ -86,7 +102,7 @@ void Gestion_Coli_Courrier::on_ajoutercoli_clicked()
     }
 //Controle
     bool test1=true;
-    if (((etat=="En cours")&&(avecliv==0)) || ((etat=="Livré")&&(avecliv==0)))
+    if (((etat=="En cours")&&(avecliv==0)) || ((etat=="Livre")&&(avecliv==0)))
     {
         test1=false;
     }
@@ -121,6 +137,8 @@ void Gestion_Coli_Courrier::on_ajoutercoli_clicked()
               QMessageBox::critical(nullptr, QObject::tr("Ajouter un coli"),
                             QObject::tr("Erreur ! Merci de vérifier les champs  \n"
                                       "Click Cancel to exit."), QMessageBox::Cancel);
+
+    refresh();
 }
 
 void Gestion_Coli_Courrier::on_suppcoli_clicked()
@@ -152,11 +170,7 @@ void Gestion_Coli_Courrier::on_suppcoli_clicked()
         QMessageBox::critical(this, "Annulation", "La suppression de ce coli a ete annuler !");
     }
 
-}
-
-void Gestion_Coli_Courrier::on_Load_1_clicked()
-{
-    ui->tableColi->setModel(tmpcoli.afficherColi());
+    refresh();
 }
 
 void Gestion_Coli_Courrier::on_Modifiercoli_clicked()
@@ -191,6 +205,8 @@ void Gestion_Coli_Courrier::on_Modifiercoli_clicked()
     {
         QMessageBox::critical(this, "Annulation", "La modification de l'etat de ce coli a ete annuler !");
     }
+
+    refresh();
 }
 
 void Gestion_Coli_Courrier::on_stat1_clicked()
@@ -254,6 +270,8 @@ void Gestion_Coli_Courrier::on_ajoutercourrier_clicked()
         {
              QMessageBox::critical(this, "Annulation","L'ajout de ce courrier a ete annuler !");
         }
+
+        refresh();
 }
 
 void Gestion_Coli_Courrier::on_suppcourrier_clicked()
@@ -284,6 +302,8 @@ void Gestion_Coli_Courrier::on_suppcourrier_clicked()
     {
         QMessageBox::critical(this, "Annulation","La suppression de ce courrier a ete annuler !");
     }
+
+    refresh();
 }
 void Gestion_Coli_Courrier::on_ModifierCourrier_clicked()
 {
@@ -314,11 +334,8 @@ void Gestion_Coli_Courrier::on_ModifierCourrier_clicked()
     {
         QMessageBox::critical(this, "Annulation","La modification de ce courrier a ete annuler !");
     }
-}
 
-void Gestion_Coli_Courrier::on_Load_2_clicked()
-{
-    ui->tableView_2->setModel(tmpcourrier.afficherCourrier());
+    refresh();
 }
 
 void Gestion_Coli_Courrier::on_stat2_clicked()
@@ -395,6 +412,8 @@ void Gestion_Coli_Courrier::on_ajouterequip_clicked()
     {
          QMessageBox::critical(this, "Annulation","L'ajout de cet équipement a ete annuler !");
     }
+
+    refresh();
 }
 
 void Gestion_Coli_Courrier::on_supp_equip_clicked()
@@ -425,11 +444,8 @@ void Gestion_Coli_Courrier::on_supp_equip_clicked()
     {
         QMessageBox::critical(this, "Annulation","La suppression de cet équipement a ete annuler !");
     }
-}
 
-void Gestion_Coli_Courrier::on_Load_3_clicked()
-{
-   ui->tableView_3->setModel(tmpequip.afficherEquip());
+    refresh();
 }
 
 void Gestion_Coli_Courrier::on_recherche_3_textChanged(const QString &arg1)
@@ -439,11 +455,6 @@ void Gestion_Coli_Courrier::on_recherche_3_textChanged(const QString &arg1)
 
 //***********************************CRUD Livraison***********************************
 
-void Gestion_Coli_Courrier::on_refresh_clicked()
-{
-    ui->comboBox->setModel(tmpcoli.afficheridcoli());
-    ui->comboBox_2->setModel(tmpequip.afficheridequip());
-}
 
 void Gestion_Coli_Courrier::on_ajouterliv_clicked()
 {
@@ -498,6 +509,8 @@ void Gestion_Coli_Courrier::on_ajouterliv_clicked()
     {
          QMessageBox::critical(this, "Annulation", "L'ajout de cette livraison a ete annuler !");
     }
+
+    refresh();
 }
 
 void Gestion_Coli_Courrier::on_supp_liv_clicked()
@@ -528,11 +541,8 @@ void Gestion_Coli_Courrier::on_supp_liv_clicked()
     {
         QMessageBox::critical(this, "Annulation", "La suppression de cette livraison a ete annuler !");
     }
-}
 
-void Gestion_Coli_Courrier::on_Load_4_clicked()
-{
-    ui->tableView_4->setModel(tmpliv.afficherLiv());
+    refresh();
 }
 
 void Gestion_Coli_Courrier::on_recherche_4_textChanged(const QString &arg1)
@@ -541,6 +551,8 @@ void Gestion_Coli_Courrier::on_recherche_4_textChanged(const QString &arg1)
 }
 
 //***************************************************************
+
+/*
 void Gestion_Coli_Courrier::on_PDF_clicked()
 {
     QString strStream;
@@ -644,7 +656,7 @@ void Gestion_Coli_Courrier::on_PDF_2_clicked()
         document->print(&printer);
 }
 
-/*
+
 Push_bouton pour recherche
 void Gestion_Coli_Courrier::on_pushButton_2_recherche_4_clicked()
 {
