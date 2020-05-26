@@ -6,6 +6,8 @@
 #include <QPixmap>
 #include "gestion_coli_courrier.h"
 
+// include the header of your workspace here
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -93,7 +95,7 @@ close();
  --------------------------------------
 */
 
-if (given_password.mid(4,2)=="RH"){
+if (given_password.mid(4,2)=="RH"){ //given_password.mid(4,2)=="XX" -> XX are the 1st 2 letters of your departement name uppercased
 work_space *ws;
 ws = new work_space();
 ws->setWindowTitle("Rapid Post");
@@ -113,7 +115,7 @@ ws->show();
  --------------------------------------
 */
 
-if (given_password.mid(4,2)=="CL"){
+if (given_password.mid(4,2)=="CL"){//given_password.mid(4,2)=="XX" -> XX are the 1st 2 letters of your departement name uppercased
 Gestion_Coli_Courrier *cl;
 cl = new Gestion_Coli_Courrier();
 cl->setWindowTitle("Rapid Post");
