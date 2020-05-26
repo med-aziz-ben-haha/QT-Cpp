@@ -4,6 +4,7 @@
 #include "work_space.h"
 #include <QMessageBox>
 #include <QPixmap>
+#include "gestion_coli_courrier.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -54,12 +55,12 @@ tmp=user();
     a++;
 
     //check if user is in default list
-    QString users="adminRH adminCL";
+    QString users="adminRH adminCL"; // you add your ID in format admin(first 2 letters of your departement name)
     bool user_ex = users.contains(userID);
 
     //check if password is in default list
-    QString password ="ADM-RH ADM-CL";
-    bool pass_ex = password.contains(given_password.mid(0,6));
+    QString password ="ADM-RH ADM-CL"; // you add your password in format ADM-(first 2 letters of your departement name)
+    bool pass_ex = password.contains(given_password);
 
 
 QSqlQuery qry;
@@ -80,6 +81,18 @@ if(count==1 || (user_ex && pass_ex)){
 close();
 
 //open RH Space
+/*
+ ---------------pour tester------------
+ username : 09870668
+ mdp : EMP-RH-09870668
+
+ ou bien
+
+ username : adminRH
+ mdp : ADM-RH
+ --------------------------------------
+*/
+
 if (given_password.mid(4,2)=="RH"){
 work_space *ws;
 ws = new work_space();
@@ -92,7 +105,13 @@ ws->show();
  ---------------pour tester------------
  username : 12345678
  mdp : EMP-CL-12345678
+
+ ou bien
+
+ username : adminCL
+ mdp : ADM-CL
  --------------------------------------
+*/
 
 if (given_password.mid(4,2)=="CL"){
 Gestion_Coli_Courrier *cl;
@@ -100,9 +119,12 @@ cl = new Gestion_Coli_Courrier();
 cl->setWindowTitle("Rapid Post");
 cl->show();
 }
-*/
 
-}
+
+
+
+
+}//end test login
     else if( userID.length()!= 8 )
            ui->statusbar->showMessage("Check the userID input format",3000);
     else if( given_password.length()<4 )
