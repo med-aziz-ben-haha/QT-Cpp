@@ -1,147 +1,185 @@
-/****************************************************************************
-**
-** Copyright (C) 2016 The Qt Company Ltd.
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the examples of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:BSD$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** BSD License Usage
-** Alternatively, you may use this file under the terms of the BSD license
-** as follows:
-**
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of The Qt Company Ltd nor the names of its
-**     contributors may be used to endorse or promote products derived
-**     from this software without specific prior written permission.
-**
-**
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
-
-#include <QtNetwork>
-
 #include "client.h"
-#include "connection.h"
-#include "peermanager.h"
-
+#include <QDebug>
+#include "conx.h"
+#include <QVector>
+#include "QWindow"
+#include <QApplication>
+#include <QtWidgets/QMainWindow>
+#include <QtCharts/QChartView>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QHorizontalStackedBarSeries>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QCategoryAxis>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+#include <QtWidgets/QGridLayout>
+QT_CHARTS_USE_NAMESPACE
 Client::Client()
 {
-    peerManager = new PeerManager(this);
-    peerManager->setServerPort(server.serverPort());
-    peerManager->startBroadcasting();
-
-    QObject::connect(peerManager, SIGNAL(newConnection(Connection*)),
-                     this, SLOT(newConnection(Connection*)));
-    QObject::connect(&server, SIGNAL(newConnection(Connection*)),
-                     this, SLOT(newConnection(Connection*)));
+idclient=0;
+nom="";
+prenom="";
+adresse="";
+mail="";
+tel=0;
+nbp=0;
+cin=0;
 }
-
-void Client::sendMessage(const QString &message)
+Client::Client(int idclient,QString nom,QString prenom,QString adresse,QString mail,int tel,int nbp,int cin)
 {
-    if (message.isEmpty())
-        return;
-
-    for (Connection *connection : qAsConst(peers))
-        connection->sendMessage(message);
+  this->idclient=idclient;
+  this->nom=nom;
+  this->prenom=prenom;
+  this->adresse=adresse;
+  this->mail=mail;
+  this->tel=tel;
+  this->nbp=nbp;
+  this->cin=cin;
 }
-
-QString Client::nickName() const
+QString Client::get_nom(){return  nom;}
+QString Client::get_prenom(){return prenom;}
+int Client::get_id(){return  idclient;}
+QString Client::get_adresse(){return adresse;}
+QString Client::get_mail(){return mail;}
+int Client::get_tel(){return tel;}
+int Client::get_nbp(){return nbp;}
+int Client::get_cin(){return cin;}
+bool Client::ajouter()
 {
-    return peerManager->userName() + " ( Port : " + QString::number(server.serverPort())+" )";
+QSqlQuery query;
+QString res= QString::number(idclient);
+query.prepare("INSERT INTO Client (IDCLIENT, NOM, PRENOM,ADRESSE,MAIL,TEL,NBP,CIN) "
+                    "VALUES (:idclient, :nom, :prenom, :adresse, :mail, :tel, :nbp, :cin)");
+query.bindValue(":idclient", res);
+query.bindValue(":nom", nom);
+query.bindValue(":prenom", prenom);
+query.bindValue(":adresse", adresse);
+query.bindValue(":mail", mail);
+query.bindValue(":tel", tel);
+query.bindValue(":nbp", nbp);
+query.bindValue(":cin", cin);
+return    query.exec();
 }
 
-bool Client::hasConnection(const QHostAddress &senderIp, int senderPort) const
+QSqlQueryModel * Client::afficher()
+{QSqlQueryModel * model= new QSqlQueryModel();
+model->setQuery("select * from client");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prénom"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("Adresse"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("E-mail"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("Téléphone"));
+model->setHeaderData(6, Qt::Horizontal, QObject::tr("Nombre de points"));
+model->setHeaderData(7, Qt::Horizontal, QObject::tr("CIN"));
+    return model;
+}
+
+bool Client::modifier(int id_client,QString nom,QString prenom,QString adresse,QString mail,int tel,int nbp,int cin)
 {
-    if (senderPort == -1)
-        return peers.contains(senderIp);
 
-    if (!peers.contains(senderIp))
-        return false;
-
-    const QList<Connection *> connections = peers.values(senderIp);
-    for (const Connection *connection : connections) {
-        if (connection->peerPort() == senderPort)
-            return true;
-    }
-
-    return false;
+    QSqlQuery qry;
+        qry.prepare("UPDATE client set NOM=(?),PRENOM=(?),ADRESSE=(?),MAIL=(?),TEL=(?),NBP=(?),CIN=(?) where IDCLIENT=(?) ");
+        qry.addBindValue(nom);
+        qry.addBindValue(prenom);
+        qry.addBindValue(adresse);
+        qry.addBindValue(mail);
+        qry.addBindValue(tel);
+        qry.addBindValue(nbp);
+        qry.addBindValue(cin);
+        qry.addBindValue(id_client);
+   return  qry.exec();
 }
 
-void Client::newConnection(Connection *connection)
+bool Client::modif1(QString arg,int id_client,QString attribut)
 {
-    connection->setGreetingMessage(peerManager->userName());
 
-    connect(connection, SIGNAL(error(QAbstractSocket::SocketError)),
-            this, SLOT(connectionError(QAbstractSocket::SocketError)));
-    connect(connection, SIGNAL(disconnected()), this, SLOT(disconnected()));
-    connect(connection, SIGNAL(readyForUse()), this, SLOT(readyForUse()));
+    QSqlQuery qry;
+        qry.prepare("UPDATE client set "+arg+"=(?) where IDCLIENT=(?) ");
+        qDebug()<<attribut;
+        qDebug()<<arg;
+        qDebug()<<id_client;
+        qry.addBindValue(attribut);
+        qry.addBindValue(id_client);
+
+   return  qry.exec();
 }
 
-void Client::readyForUse()
+/*bool Client::modif2(QString arg,int id_client,int attribut)
 {
-    Connection *connection = qobject_cast<Connection *>(sender());
-    if (!connection || hasConnection(connection->peerAddress(),
-                                     connection->peerPort()))
-        return;
 
-    connect(connection, SIGNAL(newMessage(QString,QString)),
-            this, SIGNAL(newMessage(QString,QString)));
-
-    peers.insert(connection->peerAddress(), connection);
-    QString nick = connection->name();
-    if (!nick.isEmpty())
-        emit newParticipant(nick);
+    QSqlQuery qry;
+        qry.prepare("UPDATE client set '"+attribut+"'=(?) where IDCLIENT=(?) ");
+        qry.addBindValue(arg);
+        qry.addBindValue(id_client);
+   return  qry.exec();
 }
+*/
 
-void Client::disconnected()
+bool Client::supp(QString arg,int id_client)
 {
-    if (Connection *connection = qobject_cast<Connection *>(sender()))
-        removeConnection(connection);
+
+    QSqlQuery qry;
+        qry.prepare("UPDATE client set "+arg+"=NULL where IDCLIENT=(?) ");
+        qDebug()<<arg;
+        qDebug()<<id_client;
+        qry.addBindValue(id_client);
+
+   return  qry.exec();
 }
 
-void Client::connectionError(QAbstractSocket::SocketError /* socketError */)
+bool Client::supprimer(int idd)
 {
-    if (Connection *connection = qobject_cast<Connection *>(sender()))
-        removeConnection(connection);
+QSqlQuery query;
+QString res= QString::number(idd);
+query.prepare("Delete from Client where IDCLIENT = :idclient ");
+query.bindValue(":idclient", res);
+return    query.exec();
 }
 
-void Client::removeConnection(Connection *connection)
+QSqlQueryModel * Client::recherche(const QString &id)
 {
-    if (peers.contains(connection->peerAddress())) {
-        peers.remove(connection->peerAddress());
-        QString nick = connection->name();
-        if (!nick.isEmpty())
-            emit participantLeft(nick);
-    }
-    connection->deleteLater();
+
+    QSqlQueryModel * model = new QSqlQueryModel();
+    model->setQuery("select * from client where (IDCLIENT LIKE '"+id+"%')");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prénom"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Adresse"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("E-mail"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Téléphone"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Nombre de points"));
+    model->setHeaderData(7, Qt::Horizontal, QObject::tr("CIN"));
+    return model;
 }
+
+QSqlQueryModel *  Client::trier(const QString &critere, const QString &mode )
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    qDebug() <<critere;
+     qDebug() <<mode;
+model->setQuery("select * from client order by "+critere+" "+mode+"");
+
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prénom"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("Adresse"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("E-mail"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("Téléphone"));
+model->setHeaderData(6, Qt::Horizontal, QObject::tr("Nombre de points"));
+model->setHeaderData(7, Qt::Horizontal, QObject::tr("CIN"));
+    return model;
+}
+
+QSqlQueryModel * Client::afficherid()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select IDCLIENT from client");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("IDCLIENT"));
+    return model;
+}
+
+

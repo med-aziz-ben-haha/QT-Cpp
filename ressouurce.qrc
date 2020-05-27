@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/add.png</file>
+        <file>image/delete.png</file>
+        <file>image/load.png</file>
+        <file>image/modify.png</file>
+        <file>image/poste1.jpg</file>
+        <file>image/search.png</file>
+        <file>image/statt.png</file>
+        <file>image/trier.png</file>
+        <file>image/1.png</file>
+        <file>image/2.png</file>
+        <file>image/aa.png</file>
+        <file>image/afficher.png</file>
+        <file>image/ajout.png</file>
+        <file>image/ajouter.png</file>
+        <file>image/m.jpg</file>
+        <file>image/m1.png</file>
+        <file>image/retirer.png</file>
+        <file>image/stat1.png</file>
+        <file>image/supprimer.png</file>
+    </qresource>
+</RCC>
