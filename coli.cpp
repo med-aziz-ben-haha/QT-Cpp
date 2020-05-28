@@ -83,21 +83,21 @@ bool coli::modifierColi(QString idcoli,QString etat,QString avecliv)
     if ((etat=="En stock") && avecliv=="0")
     {
         QString header;
-        header = "update COLI set ETAT='Livre' where IDCOLI = :idcoli";
+        header = "update coli set etat='Livre' where idcoli = :idcoli";
         q.prepare(header);
         q.bindValue(":idcoli",idcoli);
     }
     if ((etat=="En stock") && avecliv=="1")
     {
         QString header;
-        header = "update COLI set ETAT='En cours' where IDCOLI = :idcoli";
+        header = "update coli set etat='En cours' where idcoli = :idcoli";
         q.prepare(header);
         q.bindValue(":idcoli",idcoli);
     }
     if (etat=="En cours")
     {
         QString header;
-        header = "update COLI set ETAT='Livre' where IDCOLI= :idcoli and AVECLIV=1";
+        header = "update coli set etat='Livre' where idcoli = :idcoli and avecliv=1";
         q.prepare(header);
         q.bindValue(":idcoli",idcoli);
     }
